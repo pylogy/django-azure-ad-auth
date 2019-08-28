@@ -88,7 +88,7 @@ class AzureActiveDirectoryBackend(object):
         if self.USER_CREATION:
             username_field = getattr(self.User, 'USERNAME_FIELD', 'username')
             if username_field and username_field != 'email':
-                user_kwargs[username_field] = self.username_generator(user_kwargs['email'])
+                user_kwargs[username_field] = str(self.username_generator(user_kwargs['email']))
             for user_field, token_field in self.USER_MAPPING.items():
                 if token_field not in payload:
                     continue
